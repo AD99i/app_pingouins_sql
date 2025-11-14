@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>PingouinAPP</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div>
+    <h1>Application d'observation des Pingouins</h1>
+    {% if message%}
+      <div class="alert alert-primary" role="alert">
+        {{message}}
+      </div>
+    {% endif %}
+  </div>
+
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Espece</th>
+      <th scope="col">Ile</th>
+      <th scope="col">Longueur Bec (mm)</th>
+      <th scope="col">Profondeur Bec (mm)</th>
+      <th scope="col">Longueur Nageoire (mm)</th>
+      <th scope="col">Poids (G)</th>
+      <th scope="col">Sexe</th>
+      <th scope="col">Annee Naissance</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for p in individus %}
+      <tr>
+      <th scope="row">{{p.id}}</th>
+      <td>{{p.espece}}</td>
+      <td>{{p.ile}}</td>
+      <td>{{p.longueur_bec}}</td>
+      <td>{{p.profondeur_bec}}</td>
+      <td>{{p.longueur_nageoire}}</td>
+      <td>{{p.poids}}</td>
+      <td>{{p.sexe}}</td>
+      <td>{{p.annee_naissance}}</td>
+      <td><a href="{{ url_for('modifier') }}?id={{p.id}}" class="btn btn-primary" role="button">Modifier</a>
+      <td><a href="{{ url_for('supprimer') }}?id={{p.id}}" class="btn btn-danger" role="button">Supprimer</a>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PingouinAPP</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div>
+    <h1>Application d'observation des Pingouins</h1>
+    <h2>Modification des information du pingouin n°={{pingouin.id}}</h2>
+  </div>
+
+
+  <form action = "{{url_for('modifier')}}" method = "POST">
+    <div class="center">
+      <div class="form-group">
+        <label for="idPingouin">Identifiant</label>
+        <input class="form-control" id="idPingouin" name='idPingouin' value='{{pingouin.id}}'} readonly>
+      </div>
+      <div class="form-group">
+        <label for="espece">Espece</label>
+        <input type="text" class="form-control" id='espece' name='espece'  value='{{pingouin.espece}}'>
+      </div>
+      <div class="form-group">
+        <label for="ile">Ile</label>
+        <input type="text" class="form-control" id='ile' name='ile'  value='{{pingouin.ile}}'>
+      </div>
+      <div class="form-group">
+        <label for="longueur_bec">Longueur du bec (mm)</label>
+        <input type="number" min=1 step=0.1 class="form-control" id="longueur_bec" name='longueur_bec' value='{{pingouin.longueur_bec}}'>
+      </div>
+      <div class="form-group">
+        <label for="profondeur_bec">Profondeur du bec (mm)</label>
+        <input type="number" min=1 step=0.1 class="form-control" id="profondeur_bec" name='profondeur_bec' value='{{pingouin.profondeur_bec}}'>
+      </div>
+      <div class="form-group">
+        <label for="longueur_nageoire">Longueur de la nageoire (mm)</label>
+        <input type="number" min=1 step=0.1 class="form-control" id="longueur_nageoire" name='longueur_nageoire' value='{{pingouin.longueur_nageoire}}'>
+      </div>
+      <div class="form-group">
+        <label for="poids">poids (g)</label>
+        <input type="number" min=1 step=1 class="form-control" id="poids" name='poids'  value='{{pingouin.poids}}'>
+      </div>
+      <div class="form-group">
+        <label for="sexe">Sexe</label>
+        <select id='sexe' name='sexe' class="form-select" aria-label="Default select example">
+          <option value="female" {%if pingouin.sexe=='female' %}selected{% endif %}>Female</option>
+          <option value="male" {%if pingouin.sexe=='male' %}selected{% endif %}>Male</option>
+          <option value="null" {%if pingouin.sexe==None %}selected{% endif %}>Inconnu</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="annee_naissance">Année de naissance</label>
+        <input type="number" min=1 step=1 class="form-control" id="annee_naissance" name='annee_naissance'  value='{{pingouin.annee_naissance}}'>
+      </div>
+      <input type = "submit" class="btn btn-primary" value = "Valider" />
+    </div>
+  </form>
+</body>
+</html>
